@@ -11,6 +11,8 @@ import { DatePickerRangeComponent } from './date-picker-range/date-picker-range.
 import { FullCalendarModule } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
+import { ChartsComponent } from './charts/charts.component';
+import { CalendarComponent } from './calendar/calendar.component';
 
 
 FullCalendarModule.registerPlugins([
@@ -32,7 +34,9 @@ FullCalendarModule.registerPlugins([
     })
   ],
   declarations: [
-    DatePickerRangeComponent
+    DatePickerRangeComponent,
+    CalendarComponent,
+    ChartsComponent
   ],
   exports:[
     CommonModule,
@@ -44,7 +48,9 @@ FullCalendarModule.registerPlugins([
     AngularMaterialModule,
     FlexLayoutModule,
     DatePickerRangeComponent,
-    FullCalendarModule
+    FullCalendarModule,
+    CalendarComponent,
+    ChartsComponent
   ]
 })
 export class ShareModule { }

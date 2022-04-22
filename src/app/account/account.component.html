@@ -1,14 +1,28 @@
-<p>account works!</p>
-
 <div class="container">
   <div class="row">
     <div class="col-12" *ngIf="this.UserInfoService.isLogin()">
-        <app-add-item (newItemEvent)="refreshData($event)"></app-add-item>
+      <app-add-item (newItemEvent)="refreshData($event)"></app-add-item>
     </div>
   </div>
   <div class="row">
     <div class="col-12">
-      <app-date-picker-range (newItemEvent)="getDataRange($event)"></app-date-picker-range>
+      <div class="container">
+        <div class="row">
+          <div class="col-12 h-50">
+            <mat-tab-group>
+              <mat-tab label="日曆">
+                <app-calendar></app-calendar>
+              </mat-tab>
+              <mat-tab label="圖表">
+                <div class="col-12">
+                  <app-date-picker-range (newItemEvent)="getDataRange($event)"></app-date-picker-range>
+                </div>
+                <app-charts></app-charts>
+              </mat-tab>
+            </mat-tab-group>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
