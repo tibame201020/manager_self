@@ -1,0 +1,51 @@
+<div style="width: 60%;">
+  <hr>
+
+  <div class="row">
+    <div class="col-1">
+      <button type="button" class="btn btn-primary" (click)="addItem()"> add </button>
+    </div>
+    <div class="col-1" *ngIf="this.AddItemService.itemList && this.AddItemService.itemList.length">
+      <button type="button" class="btn btn-success" (click)="saveItems()"> send </button>
+    </div>
+  </div>
+
+
+
+  <hr>
+  <div *ngIf="this.AddItemService.itemList && this.AddItemService.itemList.length">
+    <table class="table caption-top table-hover">
+      <thead>
+        <tr>
+          <th scope="col">date</th>
+          <th scope="col">類別</th>
+          <th scope="col">子類別</th>
+          <th scope="col">項目</th>
+          <th scope="col">值</th>
+          <th scope="col">編輯</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of this.AddItemService.itemList; index as index;">
+          <td scope="col">{{item.date | date:'yyyy/MM/dd'}}</td>
+          <td scope="col">{{getCategory(item.category)}}</td>
+          <td scope="col">{{getSubCategory(item.category, item.subCategory)}}</td>
+          <td scope="col">{{item.itemName}}</td>
+          <td scope="col">
+            <span *ngIf="item.category == 'account'">$</span>
+            {{item.itemValue | number}}
+            <span *ngIf="item.category == 'eat' || item.category == 'fit'">cal</span>
+          </td>
+          <td>
+            <a class = "cursor-default">
+              <i class="material-icons" (click)="openEditDialog(index)">edit</i>
+            </a>
+            <a (click)="deleteItem(index)" class = "cursor-default">
+              <i class="material-icons">delete_forever</i>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  </div>

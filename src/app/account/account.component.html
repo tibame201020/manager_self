@@ -1,0 +1,14 @@
+<p>account works!</p>
+
+<div class="container">
+  <div class="row">
+    <div class="col-12" *ngIf="this.UserInfoService.isLogin()">
+        <app-add-item (newItemEvent)="refreshData($event)"></app-add-item>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <app-date-picker-range (newItemEvent)="getDataRange($event)"></app-date-picker-range>
+    </div>
+  </div>
+</div>

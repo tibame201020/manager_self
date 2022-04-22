@@ -1,0 +1,10 @@
+<div fxFlex="200px" class="aside" *ngIf="!this.SideBarService.hideOrShow()">
+  <br>
+  <br>
+  <ul class="list-unstyled components">
+    <p>{{this.SideBarService.getSideBar().title}}</p>
+    <li *ngFor="let alink of this.SideBarService.getSideBar().alink">
+      <a class="nav-link" href="#" routerLink="{{alink.link}}"><i class="material-icons">{{alink.icon}}</i> <i>{{alink.name}}</i></a>
+    </li>
+  </ul>
+</div>

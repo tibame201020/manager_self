@@ -1,0 +1,175 @@
+<mat-stepper [linear]="false" #stepper>
+  <form [formGroup]="formGroup">
+    <mat-step>
+      <ng-template matStepLabel>choose a date</ng-template>
+      <mat-form-field appearance="fill">
+        <input matInput [matDatepicker]="picker" readonly formControlName="date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel>select the category</ng-template>
+      <mat-form-field appearance="fill">
+        <mat-label>the category</mat-label>
+        <mat-select formControlName="category">
+          <mat-option value="account">account</mat-option>
+          <mat-option value="eat">eat</mat-option>
+          <mat-option value="fit">fit</mat-option>
+          <mat-option value="note">note</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </mat-step>
+  </form>
+
+  <div *ngIf="formGroup.value.category == 'account'">
+    <form [formGroup]="accountFormGroup">
+      <mat-step>
+        <ng-template matStepLabel>select an account category</ng-template>
+        <mat-form-field appearance="fill">
+          <mat-label>the category</mat-label>
+          <mat-select formControlName="accountCategory">
+            <mat-option value="0">食</mat-option>
+            <mat-option value="1">衣</mat-option>
+            <mat-option value="2">住</mat-option>
+            <mat-option value="3">行</mat-option>
+            <mat-option value="4">育</mat-option>
+            <mat-option value="5">樂</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </mat-step>
+      <mat-step [stepControl]="accountFormGroup" errorMessage="is required.">
+        <ng-template matStepLabel>key in data</ng-template>
+        <mat-form-field appearance="fill" style="width: 45%;">
+          <mat-label>Enter Name</mat-label>
+          <input matInput placeholder="name" formControlName="accountName" type="text">
+        </mat-form-field>
+        |
+        <mat-form-field appearance="fill" style="width: 45%;">
+          <mat-label>Enter Money</mat-label>
+          <input matInput placeholder="money" formControlName="accountMoney" type="number">
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </mat-step>
+    </form>
+  </div>
+  <div *ngIf="formGroup.value.category == 'eat'">
+    <form [formGroup]="eatFormGroup">
+      <mat-step>
+        <ng-template matStepLabel>select an eat category</ng-template>
+        <mat-form-field appearance="fill">
+          <mat-label>the category</mat-label>
+          <mat-select formControlName="eatCategory">
+            <mat-option value="0">早餐</mat-option>
+            <mat-option value="1">中餐</mat-option>
+            <mat-option value="2">晚餐</mat-option>
+            <mat-option value="3">消夜</mat-option>
+            <mat-option value="4">其他</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </mat-step>
+      <mat-step [stepControl]="eatFormGroup" errorMessage="is required.">
+        <ng-template matStepLabel>key in data</ng-template>
+        <mat-form-field appearance="fill" style="width: 45%;">
+          <mat-label>Enter Name</mat-label>
+          <input matInput placeholder="name" formControlName="eatName" type="text">
+        </mat-form-field>
+        |
+        <mat-form-field appearance="fill" style="width: 45%;">
+          <mat-label>Enter Money</mat-label>
+          <input matInput placeholder="cal" formControlName="eatCal" type="number">
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </mat-step>
+    </form>
+  </div>
+  <div *ngIf="formGroup.value.category == 'fit'">
+    <form [formGroup]="fitFormGroup">
+      <mat-step>
+        <ng-template matStepLabel>select a fit category</ng-template>
+        <mat-form-field appearance="fill">
+          <mat-label>the category</mat-label>
+          <mat-select formControlName="fitCategory">
+            <mat-option value="0">有氧</mat-option>
+            <mat-option value="1">重訓</mat-option>
+            <mat-option value="2">其他</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </mat-step>
+
+      <mat-step [stepControl]="fitFormGroup" errorMessage="is required.">
+        <ng-template matStepLabel>key in data</ng-template>
+        <mat-form-field appearance="fill" style="width: 45%;">
+          <mat-label>Enter Name</mat-label>
+          <input matInput placeholder="name" formControlName="fitName" type="text">
+        </mat-form-field>
+        |
+        <mat-form-field appearance="fill" style="width: 45%;">
+          <mat-label>Enter Money</mat-label>
+          <input matInput placeholder="cal" formControlName="fitCal" type="number">
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </mat-step>
+    </form>
+  </div>
+  <div *ngIf="formGroup.value.category == 'note'">
+    <form [formGroup]="noteFormGroup">
+      <mat-step [stepControl]="noteFormGroup" errorMessage="is required.">
+        <ng-template matStepLabel>key in data</ng-template>
+        <mat-form-field appearance="fill" style="width: 100%;">
+          <mat-label>Note</mat-label>
+          <textarea matInput placeholder="note" formControlName="note"></textarea>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </mat-step>
+    </form>
+  </div>
+
+
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    <div class="sendFrom" *ngIf="formGroup.valid &&accountFormGroup.valid">
+      <p>You are now done.</p>
+    </div>
+    <div>
+      <span class="sendFrom" *ngIf="checkFormField()">
+        <button type="button" class="btn btn-secondary"   (click)="addToList()">
+          <i class="material-icons">done_outline</i>
+          add list</button>
+      </span>
+    </div>
+  </mat-step>
+</mat-stepper>

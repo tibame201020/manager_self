@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UserInfoService } from './share/user-info.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'manager_self';
+
+  constructor(public UserInfoService:UserInfoService) {
+
+  }
 }

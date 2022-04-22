@@ -1,18 +1,40 @@
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HomeModule } from './home/home.module';
+import { ShareModule } from './share/share.module';
+import { HeaderComponent } from './header/header.component';
+import { SideBarComponent } from './side-bar/side-bar.component';
+import { JwtInterceptor } from './inteceotor/jwt.interceptor';
+import { AccountComponent } from './account/account.component';
+import { EatComponent } from './eat/eat.component';
+import { FitComponent } from './fit/fit.component';
+import { NoteComponent } from './note/note.component';
+import { AddItemComponent } from './add-item/add-item.component';
+import { AddFormComponent } from './add-form/add-form.component';
+import { EditItemComponent } from './edit-item/edit-item.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent,
+    SideBarComponent,
+    AccountComponent,
+    EatComponent,
+    FitComponent,
+    NoteComponent,
+    AddItemComponent,
+    AddFormComponent,
+    EditItemComponent
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule
+    ShareModule,
+    BrowserAnimationsModule,
+    HomeModule
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,27 @@
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-12" *ngIf="this.UserInfoService.isLogin()">
+      <app-add-item (newItemEvent)="refreshData($event)"></app-add-item>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <mat-card class="demo-inline-calendar-card">
+        <mat-calendar [(selected)]="selected" (selectedChange)="changeSelect()"></mat-calendar>
+      </mat-card>
+    </div>
+    <div class="col-6">
+      <mat-card class="demo-inline-calendar-card">
+        <p>{{selected | date}}</p>
+        <hr>
+        <div style="width: 80%;">
+          <div *ngFor="let note of notes let i=index" class="cursor-default">
+            {{note.itemName}}
+            <hr>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>

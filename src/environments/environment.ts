@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  baseUrl : "http://localhost:8090/api/",
+  lineTokenUrl : "https://api.line.me/oauth2/v2.1/token"
 };
 
 /*
