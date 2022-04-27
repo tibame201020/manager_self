@@ -48,9 +48,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.LoginService.getLineAccessUrl().subscribe(
-      res => window.location.href = res
-    )
+    window.location.href = this.LoginService.getLineAccessUrl();
   }
 
 }

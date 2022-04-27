@@ -16,13 +16,11 @@ export class LoginService {
     this.http.get(environment.baseUrl + 'wakeUp').subscribe();
   }
 
-  getLineAccessUrl(): Observable<string> {
-    const headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8');
-    const requestOptions: Object = {
-      headers: headers,
-      responseType: 'text'
-    }
-    return this.http.get<string>(environment.baseUrl + 'login', requestOptions);
+  getLineAccessUrl() {
+    const bastUrl = environment.line_oauth_base_url;
+    const param = environment.line_oauth_param;
+    const callBackUrl = window.location.href
+    return bastUrl + callBackUrl + param;
   }
 
   getParam(code: string): Observable<string> {
