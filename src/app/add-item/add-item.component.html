@@ -2,11 +2,11 @@
   <hr>
 
   <div class="row">
-    <div class="col-1">
-      <button type="button" class="btn btn-primary" (click)="addItem()"> add </button>
+    <div class="col-3">
+      <button type="button" class="btn btn-primary" (click)="addItem()"> 添加列表 </button>
     </div>
-    <div class="col-1" *ngIf="this.AddItemService.itemList && this.AddItemService.itemList.length">
-      <button type="button" class="btn btn-success" (click)="saveItems()"> send </button>
+    <div class="col-3" *ngIf="this.AddItemService.itemList && this.AddItemService.itemList.length">
+      <button type="button" class="btn btn-success" (click)="saveItems()"> 儲存 </button>
     </div>
   </div>
 

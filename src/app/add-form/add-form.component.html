@@ -1,7 +1,7 @@
 <mat-stepper [linear]="false" #stepper>
   <form [formGroup]="formGroup">
     <mat-step>
-      <ng-template matStepLabel>choose a date</ng-template>
+      <ng-template matStepLabel>日期</ng-template>
       <mat-form-field appearance="fill">
         <input matInput [matDatepicker]="picker" readonly formControlName="date">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -14,14 +14,14 @@
     </mat-step>
 
     <mat-step>
-      <ng-template matStepLabel>select the category</ng-template>
+      <ng-template matStepLabel>選擇類別</ng-template>
       <mat-form-field appearance="fill">
         <mat-label>the category</mat-label>
         <mat-select formControlName="category">
-          <mat-option value="account">account</mat-option>
-          <mat-option value="eat">eat</mat-option>
-          <mat-option value="fit">fit</mat-option>
-          <mat-option value="note">note</mat-option>
+          <mat-option value="account">支出</mat-option>
+          <mat-option value="eat">飲食管理</mat-option>
+          <mat-option value="fit">運動紀錄</mat-option>
+          <mat-option value="note">筆記</mat-option>
         </mat-select>
       </mat-form-field>
       <div>
@@ -34,7 +34,7 @@
   <div *ngIf="formGroup.value.category == 'account'">
     <form [formGroup]="accountFormGroup">
       <mat-step>
-        <ng-template matStepLabel>select an account category</ng-template>
+        <ng-template matStepLabel>選擇支出子類別</ng-template>
         <mat-form-field appearance="fill">
           <mat-label>the category</mat-label>
           <mat-select formControlName="accountCategory">
@@ -52,15 +52,15 @@
         </div>
       </mat-step>
       <mat-step [stepControl]="accountFormGroup" errorMessage="is required.">
-        <ng-template matStepLabel>key in data</ng-template>
+        <ng-template matStepLabel>項目金額</ng-template>
         <mat-form-field appearance="fill" style="width: 45%;">
           <mat-label>Enter Name</mat-label>
-          <input matInput placeholder="name" formControlName="accountName" type="text">
+          <input matInput placeholder="項目" formControlName="accountName" type="text">
         </mat-form-field>
         |
         <mat-form-field appearance="fill" style="width: 45%;">
           <mat-label>Enter Money</mat-label>
-          <input matInput placeholder="money" formControlName="accountMoney" type="number">
+          <input matInput placeholder="金額" formControlName="accountMoney" type="number">
         </mat-form-field>
         <div>
           <button mat-button matStepperPrevious>Back</button>
@@ -72,7 +72,7 @@
   <div *ngIf="formGroup.value.category == 'eat'">
     <form [formGroup]="eatFormGroup">
       <mat-step>
-        <ng-template matStepLabel>select an eat category</ng-template>
+        <ng-template matStepLabel>選擇飲食管理子類別</ng-template>
         <mat-form-field appearance="fill">
           <mat-label>the category</mat-label>
           <mat-select formControlName="eatCategory">
@@ -89,15 +89,15 @@
         </div>
       </mat-step>
       <mat-step [stepControl]="eatFormGroup" errorMessage="is required.">
-        <ng-template matStepLabel>key in data</ng-template>
+        <ng-template matStepLabel>品項熱量</ng-template>
         <mat-form-field appearance="fill" style="width: 45%;">
           <mat-label>Enter Name</mat-label>
-          <input matInput placeholder="name" formControlName="eatName" type="text">
+          <input matInput placeholder="品項" formControlName="eatName" type="text">
         </mat-form-field>
         |
         <mat-form-field appearance="fill" style="width: 45%;">
-          <mat-label>Enter Money</mat-label>
-          <input matInput placeholder="cal" formControlName="eatCal" type="number">
+          <mat-label>Enter Cal</mat-label>
+          <input matInput placeholder="熱量" formControlName="eatCal" type="number">
         </mat-form-field>
         <div>
           <button mat-button matStepperPrevious>Back</button>
@@ -109,7 +109,7 @@
   <div *ngIf="formGroup.value.category == 'fit'">
     <form [formGroup]="fitFormGroup">
       <mat-step>
-        <ng-template matStepLabel>select a fit category</ng-template>
+        <ng-template matStepLabel>選擇運動紀錄子類別</ng-template>
         <mat-form-field appearance="fill">
           <mat-label>the category</mat-label>
           <mat-select formControlName="fitCategory">
@@ -125,15 +125,15 @@
       </mat-step>
 
       <mat-step [stepControl]="fitFormGroup" errorMessage="is required.">
-        <ng-template matStepLabel>key in data</ng-template>
+        <ng-template matStepLabel>項目熱量</ng-template>
         <mat-form-field appearance="fill" style="width: 45%;">
           <mat-label>Enter Name</mat-label>
-          <input matInput placeholder="name" formControlName="fitName" type="text">
+          <input matInput placeholder="項目" formControlName="fitName" type="text">
         </mat-form-field>
         |
         <mat-form-field appearance="fill" style="width: 45%;">
-          <mat-label>Enter Money</mat-label>
-          <input matInput placeholder="cal" formControlName="fitCal" type="number">
+          <mat-label>Enter Cal</mat-label>
+          <input matInput placeholder="熱量" formControlName="fitCal" type="number">
         </mat-form-field>
         <div>
           <button mat-button matStepperPrevious>Back</button>
@@ -145,10 +145,10 @@
   <div *ngIf="formGroup.value.category == 'note'">
     <form [formGroup]="noteFormGroup">
       <mat-step [stepControl]="noteFormGroup" errorMessage="is required.">
-        <ng-template matStepLabel>key in data</ng-template>
+        <ng-template matStepLabel>筆記</ng-template>
         <mat-form-field appearance="fill" style="width: 100%;">
           <mat-label>Note</mat-label>
-          <textarea matInput placeholder="note" formControlName="note"></textarea>
+          <textarea matInput placeholder="筆記" formControlName="note"></textarea>
         </mat-form-field>
         <div>
           <button mat-button matStepperPrevious>Back</button>
@@ -168,7 +168,7 @@
       <span class="sendFrom" *ngIf="checkFormField()">
         <button type="button" class="btn btn-secondary"   (click)="addToList()">
           <i class="material-icons">done_outline</i>
-          add list</button>
+          添加至列表</button>
       </span>
     </div>
   </mat-step>
