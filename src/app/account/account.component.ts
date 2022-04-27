@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { HOME_SIDE_BAR_CONFIG } from '../home/side-bar-config';
 import { SideBarService } from '../side-bar/side-bar.service';
 import { UserInfoService } from '../share/user-info.service';
+import { AddItem } from '../model/addItem';
 
 @Component({
   selector: 'app-account',
@@ -16,6 +17,8 @@ export class AccountComponent implements OnInit {
   startDate: any;
   endDate: any;
   category = 'account';
+  itemLength = 1;
+  rangeData:AddItem[] = [];
 
   constructor(private SideBarService:SideBarService, private ItemService:ItemService, public AddItemService:AddItemService, public UserInfoService:UserInfoService ) {}
 
@@ -30,19 +33,31 @@ export class AccountComponent implements OnInit {
     this.startDate = startDate;
     this.endDate = endDate;
 
-    if (startDate && endDate) {
+    if (startDate && endDate && this.dataRange) {
       this.ItemService.getItemsByCategory(this.category, startDate, endDate).subscribe(
-        res => {console.log(res)}
+        res => {
+          this.rangeData = res;
+        }
       )
     }
   }
 
   refreshData(itemLength:number) {
-    if (itemLength == 0) {
-      this.ItemService.getItemsByCategory(this.category, this.startDate, this.endDate).subscribe(
-        res => {console.log(res)}
-      )
-    }
+    this.itemLength = itemLength;
+    this.ItemService.getItemsByCategory(this.category, this.startDate, this.endDate).subscribe(
+      res => {
+        this.rangeData = res;
+        this.itemLength = 1;
+      }
+    )
+  }
+
+  getRefresh() {
+    this.ItemService.getItemsByCategory(this.category, this.startDate, this.endDate).subscribe(
+      res => {
+        this.rangeData = res;
+      }
+    )
   }
 
 }

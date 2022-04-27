@@ -1,3 +1,4 @@
+import { AddItem } from 'src/app/model/addItem';
 import { UserInfoService } from 'src/app/share/user-info.service';
 import { ItemService } from './../item.service';
 import { Component, OnInit } from '@angular/core';
@@ -17,6 +18,10 @@ export class FitComponent implements OnInit {
 
   category = 'fit';
 
+  itemLength = 1;
+
+  rangeData:AddItem[] = [];
+
   constructor(private SideBarService:SideBarService, private ItemService:ItemService, public UserInfoService:UserInfoService) { }
 
   ngOnInit(): void {
@@ -31,20 +36,31 @@ export class FitComponent implements OnInit {
     this.endDate = endDate;
 
     if (startDate && endDate) {
-      console.log(startDate)
-      console.log(endDate)
       this.ItemService.getItemsByCategory(this.category, startDate, endDate).subscribe(
-        res => {console.log(res)}
+        res => {
+          this.rangeData = res
+        }
       )
     }
   }
 
   refreshData(itemLength:number) {
+    this.itemLength = itemLength;
     if (itemLength == 0) {
       this.ItemService.getItemsByCategory(this.category, this.startDate, this.endDate).subscribe(
-        res => {console.log(res)}
+        res => {
+          this.rangeData = res
+        }
       )
     }
+  }
+
+  getRefresh() {
+    this.ItemService.getItemsByCategory(this.category, this.startDate, this.endDate).subscribe(
+      res => {
+        this.rangeData = res;
+      }
+    )
   }
 
 }

@@ -6,8 +6,19 @@
       <full-calendar [options]="calendarOptions"></full-calendar>
     </div>
     <div class="col-6">
-      <mat-card class="demo-inline-calendar-card" *ngIf="data.length">
-        <div>
+      <mat-card class="demo-inline-calendar-card">
+        <div class="row Justify-content- around">
+          <div class="col">
+            {{selectedText}}
+          </div>
+          <div class="col-2">
+            <button type="button" class="btn btn-primary btn-sm" (click)="openEdit(selectedText)">
+              編輯
+            </button>
+          </div>
+        </div>
+        <hr>
+        <div *ngIf="data.length">
           <div class="container">
             <div class="row">
               <div class="col-12">
@@ -20,7 +31,8 @@
                   <div class="row">
                     <div class="col-2"> {{AddItemService.getSubCategory(item.category ,item.subCategory + "")}}</div>
                     <div class="col-2"> {{item.itemName}}</div>
-                    <div class="col-6"> ${{item.itemValue | number}}</div>
+                    <div class="col-6" *ngIf="'account' == getPath()"> ${{item.itemValue | number}}</div>
+                    <div class="col-6" *ngIf="'account' != getPath()"> {{item.itemValue | number}}cal</div>
                   </div>
                 </div>
               </div>
@@ -29,6 +41,11 @@
           <hr>
         </div>
       </mat-card>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12" *ngIf="data.length">
+      <app-circle-echarts [data]="circleEchartsData"></app-circle-echarts>
     </div>
   </div>
 </div>

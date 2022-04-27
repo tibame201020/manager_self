@@ -1,0 +1,14 @@
+#requiredMsg {
+  background-color: lightcoral;
+  color: black;
+}
+
+#submit {
+	margin-top: 4%;
+  margin-bottom: 1%;
+	width: 100%;
+	font-size: 100%;
+	letter-spacing: .1em;
+  color: #32797c;
+  background-color: #9cdfe2;
+}

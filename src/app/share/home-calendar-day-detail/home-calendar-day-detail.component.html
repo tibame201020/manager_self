@@ -1,0 +1,101 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <mat-card class="demo-inline-calendar-card">
+        <div class="row Justify-content- around">
+          <div class="col">
+            {{date}}
+          </div>
+          <div class="col-3">
+            <button type="button" class="btn btn-primary btn-sm" (click)="openEdit(date)">
+              編輯
+            </button>
+          </div>
+        </div>
+        <hr>
+        <div *ngIf="accounts.length">
+          <div class="container">
+            <div class="row">
+              <div class="col-12">
+                <i style="color: lightblue;">支出項目</i>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12" *ngFor="let item of accounts">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-3"> {{AddItemService.getSubCategory(item.category ,item.subCategory + "")}}</div>
+                    <div class="col-3"> {{item.itemName}}</div>
+                    <div class="col-6"> ${{item.itemValue | number}}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr>
+        </div>
+        <div *ngIf="eats.length">
+          <div class="container">
+            <div class="row">
+              <div class="col-12">
+                <i style="color: lightgreen;">飲食紀錄</i>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12" *ngFor="let item of eats">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-3"> {{AddItemService.getSubCategory(item.category ,item.subCategory + "")}}</div>
+                    <div class="col-3"> {{item.itemName}}</div>
+                    <div class="col-6"> {{item.itemValue | number}}cal</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr>
+        </div>
+        <div *ngIf="fits.length">
+          <div class="container">
+            <div class="row">
+              <div class="col-12">
+                <i style="color: red;">運動紀錄</i>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12" *ngFor="let item of fits">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-3"> {{AddItemService.getSubCategory(item.category ,item.subCategory + "")}}</div>
+                    <div class="col-3"> {{item.itemName}}</div>
+                    <div class="col-6"> {{item.itemValue | number}}cal</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr>
+        </div>
+        <div *ngIf="notes.length">
+          <div class="container">
+            <div class="row">
+              <div class="col-12">
+                <i>筆記</i>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12" *ngFor="let item of notes">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-12"> {{item.itemName}}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>

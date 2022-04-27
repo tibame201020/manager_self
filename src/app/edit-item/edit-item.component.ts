@@ -20,7 +20,6 @@ export class EditItemComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public recvData: any
     ) { }
   ngOnInit(): void {
-    console.log(this.recvData.index);
     if (!this.AddItemService.getEditItemToTmpItem(this.recvData.index)) {
       this.dialogRef.close();
     } else {

@@ -4,6 +4,7 @@ import { ItemService } from './../item.service';
 import { Component, OnInit } from '@angular/core';
 import { HOME_SIDE_BAR_CONFIG } from '../home/side-bar-config';
 import { SideBarService } from '../side-bar/side-bar.service';
+import { AddItem } from '../model/addItem';
 
 @Component({
   selector: 'app-eat',
@@ -17,6 +18,8 @@ export class EatComponent implements OnInit {
   endDate: any;
 
   category = 'eat';
+  itemLength = 1;
+  rangeData:AddItem[] = [];
 
   constructor(private SideBarService:SideBarService, private ItemService:ItemService, private AddItemService : AddItemService, public UserInfoService:UserInfoService) { }
 
@@ -33,17 +36,30 @@ export class EatComponent implements OnInit {
 
     if (startDate && endDate) {
       this.ItemService.getItemsByCategory(this.category, startDate, endDate).subscribe(
-        res => {console.log(res)}
+        res => {
+          this.rangeData = res
+        }
       )
     }
   }
 
   refreshData(itemLength:number) {
+    this.itemLength = itemLength;
     if (itemLength == 0) {
       this.ItemService.getItemsByCategory(this.category, this.startDate, this.endDate).subscribe(
-        res => {console.log(res)}
+        res => {
+          this.rangeData = res
+        }
       )
     }
+  }
+
+  getRefresh() {
+    this.ItemService.getItemsByCategory(this.category, this.startDate, this.endDate).subscribe(
+      res => {
+        this.rangeData = res;
+      }
+    )
   }
 
 }

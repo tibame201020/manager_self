@@ -23,4 +23,12 @@ export class ItemService {
     };
     return this.http.post<AddItem[]>(environment.baseUrl + 'getItems', param);
   }
+
+  delItem(id:string): Observable<boolean> {
+    return this.http.post<boolean>(environment.baseUrl + 'delItem', id);
+  }
+
+  saveChangeItem(item:any) : Observable<boolean> {
+    return this.http.post<boolean>(environment.baseUrl + 'saveChangeItem', item);
+  }
 }

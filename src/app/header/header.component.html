@@ -14,9 +14,11 @@
     </ul>
 
     <span class="navbar-text" *ngIf="this.UserInfoService.isLogin()">
-      <i class="">Welcome {{UserInfoService.getName()}}</i>
-      <span *ngIf="UserInfoService.getPicture()"><img src={{UserInfoService.getPicture()}} alt=""></span>
+      <i class="">Welcome {{UserInfoService.getName()}} </i>
     </span>
+    <div *ngIf="this.UserInfoService.isLogin() && UserInfoService.getPicture()" class="navbar-text img__wrapper">
+      <img src={{UserInfoService.getPicture()}}>
+    </div>
 
     <span class="navbar-text" *ngIf="this.UserInfoService.isLogin()">
       <a class="nav-link" href="" routerLink="" (click)="this.UserInfoService.logOut()">

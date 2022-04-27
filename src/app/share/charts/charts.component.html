@@ -1,1 +1,13 @@
-<p>charts works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <app-line-echarts [xAxisData]="dateArray" [yAxisData]="lineEchartsData"></app-line-echarts>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <app-circle-echarts [data]="circleEchartsData"></app-circle-echarts>
+    </div>
+  </div>
+</div>

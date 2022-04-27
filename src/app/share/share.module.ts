@@ -13,6 +13,13 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { ChartsComponent } from './charts/charts.component';
 import { CalendarComponent } from './calendar/calendar.component';
+import { CircleEchartsComponent } from './circle-echarts/circle-echarts.component';
+import { LineEchartsComponent } from './line-echarts/line-echarts.component';
+import { HomeCalendarComponent } from './home-calendar/home-calendar.component';
+import { HomeChartsEchartsComponent } from './home-charts-echarts/home-charts-echarts.component';
+import { HomeCalendarDayDetailComponent } from './home-calendar-day-detail/home-calendar-day-detail.component';
+import { EditAddItemsComponent } from './edit-add-items/edit-add-items.component';
+import { ItemDetailComponent } from './item-detail/item-detail.component';
 
 
 FullCalendarModule.registerPlugins([
@@ -36,7 +43,14 @@ FullCalendarModule.registerPlugins([
   declarations: [
     DatePickerRangeComponent,
     CalendarComponent,
-    ChartsComponent
+    ChartsComponent,
+    LineEchartsComponent,
+    CircleEchartsComponent,
+    HomeChartsEchartsComponent,
+    HomeCalendarComponent,
+    HomeCalendarDayDetailComponent,
+    EditAddItemsComponent,
+    ItemDetailComponent
   ],
   exports:[
     CommonModule,
@@ -50,7 +64,14 @@ FullCalendarModule.registerPlugins([
     DatePickerRangeComponent,
     FullCalendarModule,
     CalendarComponent,
-    ChartsComponent
+    ChartsComponent,
+    LineEchartsComponent,
+    CircleEchartsComponent,
+    HomeChartsEchartsComponent,
+    HomeCalendarComponent,
+    HomeCalendarDayDetailComponent,
+    EditAddItemsComponent,
+    ItemDetailComponent
   ]
 })
 export class ShareModule { }

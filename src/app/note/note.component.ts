@@ -7,6 +7,8 @@ import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { HOME_SIDE_BAR_CONFIG } from '../home/side-bar-config';
 import { SideBarService } from '../side-bar/side-bar.service';
 import { CalendarOptions } from '@fullcalendar/angular';
+import { MatDialog } from '@angular/material/dialog';
+import { EditAddItemsComponent } from '../share/edit-add-items/edit-add-items.component';
 
 @Component({
   selector: 'app-note',
@@ -18,10 +20,12 @@ export class NoteComponent implements OnInit {
 
   notes: AddItem[] = [];
   selected: Date = new Date();
+  selectedText = new Date().toLocaleString('zh-TW', { year: "numeric", month: "2-digit", day: "2-digit" }).replace("/", "-").replace("/", "-");
 
   constructor(private SideBarService: SideBarService,
     private ItemService: ItemService,
-    public UserInfoService: UserInfoService
+    public UserInfoService: UserInfoService,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -30,6 +34,7 @@ export class NoteComponent implements OnInit {
   }
 
   getNotesData() {
+    this.selectedText = this.selected.toLocaleString('zh-TW', { year: "numeric", month: "2-digit", day: "2-digit" }).replace("/", "-").replace("/", "-");
     this.ItemService.getItemsByCategory(this.category,
       this.selected.toLocaleString('zh-TW', { year: "numeric", month: "2-digit", day: "2-digit" }),
       this.selected.toLocaleString('zh-TW', { year: "numeric", month: "2-digit", day: "2-digit" })
@@ -53,6 +58,18 @@ export class NoteComponent implements OnInit {
         }
       )
     }
+  }
+
+  openEdit(date: string) {
+    const dialogRef = this.dialog.open(EditAddItemsComponent , {
+      width: '750px',
+      minHeight:'200px',
+      maxHeight:'500px',
+      data: date
+    })
+    dialogRef.afterClosed().subscribe(result => {
+      this.getNotesData();
+    });
   }
 
 }

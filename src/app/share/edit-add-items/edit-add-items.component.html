@@ -1,0 +1,46 @@
+<p>edit-add-items works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-3">
+      <form [formGroup]="formGroup">
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker" formControlName="date" readonly>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </form>
+      <hr>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12" *ngIf="dataSource && dataSource.length" >
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <ng-container matColumnDef="category">
+          <th mat-header-cell *matHeaderCellDef> 類別 </th>
+          <td mat-cell *matCellDef="let element"> {{getCategory(element.category)}} </td>
+        </ng-container>
+        <ng-container matColumnDef="subCategory">
+          <th mat-header-cell *matHeaderCellDef> 子類別 </th>
+          <td mat-cell *matCellDef="let element"> {{getSubCategory(element.category, element.subCategory)}} </td>
+        </ng-container>
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> name </th>
+          <td mat-cell *matCellDef="let element"> {{element.itemName}} </td>
+        </ng-container>
+        <ng-container matColumnDef="value">
+          <th mat-header-cell *matHeaderCellDef> value </th>
+          <td mat-cell *matCellDef="let element"> {{element.itemValue}} </td>
+        </ng-container>
+        <ng-container matColumnDef="edit">
+          <th mat-header-cell *matHeaderCellDef> edit </th>
+          <td mat-cell *matCellDef="let element">
+            <i class="material-icons cursor" (click)="edit(element)">edit</i>
+            <i class="material-icons cursor" (click)="del(element)">delete</i>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+  </div>
+</div>

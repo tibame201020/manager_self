@@ -27,7 +27,7 @@ import { EditItemComponent } from './edit-item/edit-item.component';
     NoteComponent,
     AddItemComponent,
     AddFormComponent,
-    EditItemComponent,
+    EditItemComponent
   ],
   imports: [
     ShareModule,
