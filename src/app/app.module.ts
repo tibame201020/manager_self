@@ -15,6 +15,7 @@ import { NoteComponent } from './note/note.component';
 import { AddItemComponent } from './add-item/add-item.component';
 import { AddFormComponent } from './add-form/add-form.component';
 import { EditItemComponent } from './edit-item/edit-item.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { EditItemComponent } from './edit-item/edit-item.component';
     NoteComponent,
     AddItemComponent,
     AddFormComponent,
-    EditItemComponent
+    EditItemComponent,
+    HomeComponent
   ],
   imports: [
     ShareModule,

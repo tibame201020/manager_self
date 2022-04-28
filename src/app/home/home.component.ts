@@ -33,6 +33,7 @@ export class HomeComponent implements OnInit {
   accountData:any[] = [];
   eatData:any[] = [];
   fitData:any[] = [];
+  itemLength = 1;
 
   ngOnInit(): void {
     if (this.UserInfoService.isLogin()) {
@@ -55,7 +56,7 @@ export class HomeComponent implements OnInit {
     this.endDate = endDate;
 
     if (startDate && endDate && this.UserInfoService.isLogin()) {
-      this.ItemService.getItemsByCategory(window.location.pathname.replace("/", ""), startDate, endDate).subscribe(
+      this.ItemService.getItemsByCategory(window.location.pathname.replace('/manager_self/', ''), startDate, endDate).subscribe(
         res => {
          if (res.length) {
           this.data = res;
@@ -98,14 +99,22 @@ export class HomeComponent implements OnInit {
   }
 
   getRefresh() {
-    this.ItemService.getItemsByCategory(window.location.pathname.replace("/", ""), this.startDate, this.endDate).subscribe(
-      res => {
-       if (res.length) {
-        this.data = res;
-        this.generateDateArray();
-       }
-      }
-    )
+    if (this.UserInfoService.isLogin()) {
+      this.ItemService.getItemsByCategory(window.location.pathname.replace('/manager_self/', ''), this.startDate, this.endDate).subscribe(
+        res => {
+         if (res.length) {
+          this.data = res;
+          this.generateDateArray();
+          this.itemLength = 1;
+         }
+        }
+      )
+    }
+  }
+
+  refreshData(itemLength:number) {
+    this.itemLength = itemLength;
+    this.getRefresh();
   }
 
 }

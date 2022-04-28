@@ -1,11 +1,16 @@
 <div class="col-12">
       <div class="container">
         <div class="row">
+          <div class="col-12" *ngIf="this.UserInfoService.isLogin()">
+            <app-add-item (newItemEvent)="refreshData($event)"></app-add-item>
+          </div>
+        </div>
+        <div class="row">
           <div class="col-12">
             <mat-tab-group>
               <mat-tab label="日曆">
                 <br>
-                <app-home-calendar (refresh)="getRefresh()"></app-home-calendar>
+                <app-home-calendar [itemLength]="itemLength" (refresh)="getRefresh()"></app-home-calendar>
               </mat-tab>
               <mat-tab label="圖表">
                 <br>

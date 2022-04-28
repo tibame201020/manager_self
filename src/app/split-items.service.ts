@@ -59,9 +59,9 @@ export class SplitItemsService {
         total = total + parseInt(data.itemValue);
       })
       let title = '';
-      if ('account' == window.location.pathname.replace("/", "")) {
+      if ('account' == window.location.pathname.replace('/manager_self/', '')) {
         title = '$' + total;
-      } else if('home' == window.location.pathname.replace("/", "")) {
+      } else if('home' == window.location.pathname.replace('/manager_self/', '')) {
         title = total + '';
       } else {
         title = total + 'cal';
@@ -77,7 +77,7 @@ export class SplitItemsService {
     let rtnArray: any[] = [];
     items.forEach(item => {
       let rtnObj = {
-        subCategory: this.AddItemService.getSubCategory(window.location.pathname.replace("/", ""), item.key),
+        subCategory: this.AddItemService.getSubCategory(window.location.pathname.replace('/manager_self/', ''), item.key),
         total: 0
       }
       let total = 0;

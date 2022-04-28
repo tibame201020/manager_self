@@ -19,7 +19,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class AddFormComponent implements OnInit {
 
-  pathNow = window.location.pathname.replace("/", "");
+  pathNow = window.location.pathname.replace('/manager_self/', '');
 
   formGroup: FormGroup = this.formBuilder.group({
     date: [new Date(), Validators.required],

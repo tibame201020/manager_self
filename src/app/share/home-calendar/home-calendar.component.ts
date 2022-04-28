@@ -1,5 +1,5 @@
 import { ItemService } from './../../item.service';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { CalendarOptions } from '@fullcalendar/angular';
 import { SplitItemsService } from 'src/app/split-items.service';
 import { UserInfoService } from '../user-info.service';
@@ -15,6 +15,7 @@ import { AddItemService } from 'src/app/add-item.service';
 })
 export class HomeCalendarComponent implements OnInit {
 
+  @Input() itemLength!: number;
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridMonth',
     dateClick: this.dateClick.bind(this),
@@ -57,6 +58,12 @@ export class HomeCalendarComponent implements OnInit {
 
   ngOnInit(): void {
     this.getDayData();
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    if (this.itemLength == 0) {
+      this.getDayData();
+      this.getRangeData();
+    }
   }
 
   dateClick(arg: any) {
@@ -115,7 +122,9 @@ export class HomeCalendarComponent implements OnInit {
     const end = arg.end.toLocaleString('zh-TW', { year: "numeric", month: "2-digit", day: "2-digit" }).replaceAll("-", "").replaceAll("/", "");
     this.start = start;
     this.end = end
-    this.getRangeData();
+    if (this.UserInfoService.isLogin()) {
+      this.getRangeData();
+    }
   }
 
   eventClick(arg: any) {

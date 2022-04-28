@@ -50,7 +50,7 @@ export class LineEchartsComponent implements OnInit {
   }
 
   getTitle() {
-    const path = window.location.pathname.replace("/", "");
+    const path = window.location.pathname.replace('/manager_self/', '');
     switch (path) {
       case 'account':
         return '每日總支出';
