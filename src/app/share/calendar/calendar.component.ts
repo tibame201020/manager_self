@@ -94,7 +94,7 @@ export class CalendarComponent implements OnInit {
   }
 
   getPath() {
-    return window.location.pathname.replace('/', '');
+    return window.location.pathname.replace('/manager_self/', '');
   }
 
   openEdit(date: string) {

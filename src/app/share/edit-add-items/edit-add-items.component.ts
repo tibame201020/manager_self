@@ -46,7 +46,7 @@ export class EditAddItemsComponent implements OnInit {
 
   getData(value: Date) {
     const date = value.toLocaleString('zh-TW', { year: "numeric", month: "2-digit", day: "2-digit" }).replace("/", "").replace("/", "");
-    let category = window.location.pathname.replace('/', '');
+    let category = window.location.pathname.replace('/manager_self/', '');
     this.ItemService.getItemsByCategory(category, date, date).subscribe(
       res => {
         this.dataSource = res;
