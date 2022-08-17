@@ -19,7 +19,7 @@ export class LoginService {
   getLineAccessUrl() {
     const bastUrl = environment.line_oauth_base_url;
     const param = environment.line_oauth_param;
-    const callBackUrl = window.location.href
+    const callBackUrl = "https://tibame201020.github.io/manager_self/user/login";
     return bastUrl + callBackUrl + param;
   }
 
